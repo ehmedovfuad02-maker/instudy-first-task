@@ -4,8 +4,8 @@ public class Main {
 
     // Array-i ekrana çap edən köməkçi method
     static void printArray(int[] a) {
-        for (int i = 0; i < a.length; i++) {
-            System.out.print(a[i] + " ");
+        for (int j : a) {
+            System.out.print(j + " ");
         }
         System.out.println();
     }
@@ -89,8 +89,8 @@ public class Main {
 
         // Array-in ölçüsü sabit olduğu üçün əvvəlcə cüt ədədlərin sayını tapırıq
         int evenCount = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] % 2 == 0) {
+        for (int value : arr) {
+            if (value % 2 == 0) {
                 evenCount++;
             }
         }
@@ -98,9 +98,9 @@ public class Main {
         // Həmin ölçüdə yeni array yaradıb cütləri köçürürük
         int[] evens = new int[evenCount];
         int k = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] % 2 == 0) {
-                evens[k] = arr[i];
+        for (int value : arr) {
+            if (value % 2 == 0) {
+                evens[k] = value;
                 k++;
             }
         }
@@ -116,28 +116,26 @@ public class Main {
         int[] temp2 = new int[arr.length];
         int uniqueCount = 0;
 
-        for (int i = 0; i < arr.length; i++) {
+        for (int value : arr) {
             boolean exists = false;
 
             // Bu element artıq müvəqqəti array-də varmı?
             for (int j = 0; j < uniqueCount; j++) {
-                if (temp2[j] == arr[i]) {
+                if (temp2[j] == value) {
                     exists = true;
                     break;
                 }
             }
 
             if (!exists) {
-                temp2[uniqueCount] = arr[i];
+                temp2[uniqueCount] = value;
                 uniqueCount++;
             }
         }
 
         // Dəqiq ölçülü yeni array yaradırıq
         int[] unique = new int[uniqueCount];
-        for (int i = 0; i < uniqueCount; i++) {
-            unique[i] = temp2[i];
-        }
+        System.arraycopy(temp2, 0, unique, 0, uniqueCount);
 
         System.out.println("Unikal elementlər:");
         printArray(unique);
@@ -166,16 +164,16 @@ public class Main {
         int secondMax = 0;
         int secondMin = 0;
 
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] < max) {
-                if (!foundSecondMax || arr[i] > secondMax) {
-                    secondMax = arr[i];
+        for (int j : arr) {
+            if (j < max) {
+                if (!foundSecondMax || j > secondMax) {
+                    secondMax = j;
                     foundSecondMax = true;
                 }
             }
-            if (arr[i] > min) {
-                if (!foundSecondMin || arr[i] < secondMin) {
-                    secondMin = arr[i];
+            if (j > min) {
+                if (!foundSecondMin || j < secondMin) {
+                    secondMin = j;
                     foundSecondMin = true;
                 }
             }
